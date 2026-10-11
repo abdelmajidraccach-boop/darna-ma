@@ -1,27 +1,127 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Darna.ma - عقار المغرب</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Darna.ma V3 - نظام العمولة + QR</title>
 <style>
-body{font-family:system-ui;background:#f8fafc;margin:0}
-header{background:#0f172a;color:#fff;padding:15px;display:flex;justify-content:space-between}
-.logo{font-weight:800;font-size:22px}.logo span{color:#22c55e}
-.hero{background:linear-gradient(120deg,#0f172a,#1e40af);color:#fff;padding:40px 20px;text-align:center}
-.search{margin:20px auto;max-width:600px;display:flex;gap:8px;background:#fff;padding:8px;border-radius:12px}
-.search input{flex:1;border:0;outline:0;padding:10px}.search button{background:#22c55e;color:#fff;border:0;padding:10px 20px;border-radius:8px;font-weight:bold}
-.grid{max-width:1100px;margin:20px auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;padding:0 12px}
-.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.card img{width:100%;height:180px;object-fit:cover}.info{padding:12px}.price{color:#16a34a;font-weight:800}
-.btn{display:block;text-align:center;background:#0f172a;color:#fff;padding:10px;border-radius:10px;text-decoration:none;margin-top:8px}
-</style></head>
+body{font-family:'Segoe UI';margin:0;background:#0f172a;color:#fff}
+.header{background:#1e293b;padding:15px;display:flex;justify-content:space-between;flex-wrap:wrap}
+.logo{font-size:26px;font-weight:bold;color:#fbbf24}
+.promo-banner{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#000;padding:14px;text-align:center;cursor:pointer;font-weight:bold}
+.city-search{padding:20px;background:#fff;color:#000;border-radius:15px;margin:20px auto;max-width:750px}
+.city-list{max-height:320px;overflow-y:auto;border:1px solid #ddd;border-radius:10px;margin-top:10px}
+.city-item{padding:11px;border-bottom:1px solid #eee;cursor:pointer;display:flex;justify-content:space-between}
+.city-item:hover{background:#fef3c7}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9999;justify-content:center;align-items:center}
+.modal-content{background:#1e293b;border:2px solid #fbbf24;border-radius:20px;padding:20px;max-width:800px;width:95%;max-height:90vh;overflow-y:auto;position:relative}
+.close{position:absolute;top:10px;left:15px;font-size:32px;cursor:pointer;color:#fbbf24}
+.admin-panel{display:none;background:#111827;padding:20px;margin:20px;border-radius:15px;border:2px dashed #fbbf24}
+input,textarea,select{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #444;background:#1f2937;color:#fff;box-sizing:border-box}
+button{background:#fbbf24;color:#000;padding:12px 25px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;margin:5px}
+button.green{background:#22c55e;color:#fff}button.red{background:#ef4444;color:#fff}
+.tabs{display:flex;gap:10px;margin:15px 0;flex-wrap:wrap}.tab{padding:10px 18px;background:#1f2937;border-radius:8px;cursor:pointer;border:1px solid #333}.tab.active{background:#fbbf24;color:#000;font-weight:bold}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:15px 0}.stat-card{background:#1f2937;padding:15px;border-radius:12px;text-align:center;border:1px solid #fbbf24}
+.transaction{border:1px solid #333;padding:12px;border-radius:10px;margin:8px 0;background:#1f2937;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+/* QR + مشاركة */
+#shareBtn{position:fixed;bottom:20px;right:20px;z-index:9998;background:#25D366;color:white;border:none;padding:16px 22px;border-radius:50px;font-size:18px;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.4);cursor:pointer;animation:pulse 2s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+#qrBox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.88);z-index:10000;justify-content:center;align-items:center;padding:20px}
+.qr-card{background:white;color:#000;padding:25px;border-radius:25px;text-align:center;max-width:340px;width:100%}
+</style>
+</head>
 <body>
-<header><div class="logo">Darna<span>.ma</span></div><div>🇲🇦 عقار المغرب</div></header>
-<div class="hero"><h1>لقى دارك فالمغرب</h1><p>شقق، فيلات، أراضي - كازا، الرباط، مراكش</p>
-<div class="search"><input placeholder="قلب: كازا، الرباط..."><button>بحث</button></div></div>
-<div class="grid">
-<div class="card"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"><div class="info"><div class="price">850,000 درهم</div>شقة 3 غرف - عين الذياب - كازا<a class="btn" href="https://wa.me/212600000000">واتساب</a></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9"><div class="info"><div class="price">1,200,000 درهم</div>فيلا - تاركة - مراكش<a class="btn" href="https://wa.me/212600000000">واتساب</a></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"><div class="info"><div class="price">650,000 درهم</div>شقة - تمارة - الرباط<a class="btn" href="https://wa.me/212600000000">واتساب</a></div></div>
+<div class="header"><div class="logo">دارنا.ما V3 💰</div><div>📞 0670422624 | <a onclick="openAgent()" style="color:#22c55e;cursor:pointer">لوحة الوكيل</a></div></div>
+<div class="promo-banner" id="promoBanner" onclick="openPromo()">🎬 شاهد إشهار دارنا.ما - اضغط هنا!</div>
+<div class="city-search">
+<h2>🔍 78 مدينة + نظام العمولة</h2>
+<input type="text" id="cityInput" placeholder="اكتب مدينة..." onkeyup="filterCities()">
+<div style="font-size:13px;color:#666">العدد: <span id="count">78</span></div>
+<div class="city-list" id="cityList"></div>
+<div style="margin-top:22px;background:#fef3c7;padding:16px;border-radius:12px;border:2px solid #fbbf24">
+<h3 style="margin:0;color:#000">💰 إتمام مهمة - السيت كياخد النصيب</h3>
+<input id="clientName" placeholder="سمية الزبون">
+<input id="agentName" placeholder="سمية الوكيل">
+<select id="dealType"><option>كراء</option><option>بيع</option><option>رهن</option></select>
+<input id="dealAmount" type="number" placeholder="المبلغ DH">
+<button class="green" style="width:100%" onclick="createDeal()">✅ تأكيد وحساب العمولة</button>
+<div id="dealResult" style="color:#000;margin-top:10px;font-weight:bold;background:#fff;padding:10px;border-radius:8px;display:none"></div>
 </div>
+</div>
+
+<div id="promoModal" class="modal"><div class="modal-content"><span class="close" onclick="closePromo()">&times;</span><h2 id="promoTitle" style="color:#fbbf24"></h2><div id="promoVideoContainer" style="background:#000;border-radius:12px;min-height:300px;display:flex;align-items:center;justify-content:center;padding:20px"></div><p id="promoDesc"></p></div></div>
+<div id="agentModal" class="modal"><div class="modal-content"><span class="close" onclick="document.getElementById('agentModal').style.display='none'">&times;</span><h2 style="color:#22c55e">لوحة الوكيل - <span id="agentDisplay"></span></h2><div class="stats"><div class="stat-card"><div>العمليات</div><h2 id="agentDeals">0</h2></div><div class="stat-card"><div>خاصك تخلص</div><h2 id="agentDue" style="color:#ef4444">0 DH</h2></div><div class="stat-card"><div>خلصتي</div><h2 id="agentPaid" style="color:#22c55e">0 DH</h2></div></div><div id="agentList"></div><button class="green" onclick="payCommission()">💳 خلص عبر واتساب</button></div></div>
+
+<div id="adminPanel" class="admin-panel">
+<h2 style="color:#fbbf24">⚙️ برج التحكم - Darna.ma</h2>
+<div class="tabs"><div class="tab active" onclick="switchTab('ads',event)">🎬 إشهار</div><div class="tab" onclick="switchTab('finance',event)">💰 مالية</div><div class="tab" onclick="switchTab('deals',event)">📋 عمليات</div><div class="tab" onclick="switchTab('agents',event)">🏢 وكلاء</div></div>
+<div id="tab-ads"><label>عنوان:</label><input id="adTitle"><label>رابط يوتيوب embed:</label><input id="adVideo"><label>وصف:</label><textarea id="adDesc"></textarea><label>بانر:</label><input id="adBannerText"><label><input type="checkbox" id="adEnabled" checked> مفعل</label><br><button onclick="saveAd()">💾 حفظ</button></div>
+<div id="tab-finance" style="display:none"><label>نسبة %:</label><input id="commissionRate" type="number" value="2"><label>أقل عمولة:</label><input id="minCommission" type="number" value="50"><label>طريقة:</label><select id="payMethod"><option>واتساب باي</option><option>تحويل بنكي</option><option>كاش</option></select><label>معلومات:</label><input id="payInfo" value="0670422624"><div class="stats"><div class="stat-card"><div>دخل</div><h2 id="totalIncome">0</h2></div><div class="stat-card"><div>باقي</div><h2 id="totalDue">0</h2></div><div class="stat-card"><div>عمليات</div><h2 id="totalDeals">0</h2></div></div><button class="green" onclick="saveFinance()">💾 حفظ المالية</button></div>
+<div id="tab-deals" style="display:none"><div id="allDeals"></div><button class="red" onclick="clearDeals()">مسح</button></div>
+<div id="tab-agents" style="display:none"><div id="allAgents"></div></div>
+<button onclick="closeAdmin()">إغلاق</button>
+</div>
+
+<!-- زر QR الجديد -->
+<button id="shareBtn" onclick="openShare()">📱 بارطاجي دارنا.ما 📲</button>
+<div id="qrBox" onclick="if(event.target==this) closeShare()">
+<div class="qr-card">
+<h3 style="margin:0 0 10px 0;">شارك الموقع في رمشة عين</h3>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://abdelmajidraccach-boop.github.io/darna-ma/" style="width:100%;border-radius:15px;border:3px solid #eee;">
+<p style="margin:10px 0;font-size:12px;word-break:break-all;color:#555">abdelmajidraccach-boop.github.io/darna-ma/</p>
+<button onclick="shareNative()" style="width:100%;background:#0f172a;color:white;padding:12px;border-radius:12px;border:none;font-weight:bold;margin-bottom:8px;">🚀 مشاركة بلمسة وحدة</button>
+<button onclick="copyLink()" style="width:100%;background:#f1f3f5;color:#333;padding:12px;border-radius:12px;border:none;font-weight:bold;margin-bottom:8px;">📋 نسخ الرابط</button>
+<button onclick="shareWhatsapp()" style="width:100%;background:#25D366;color:white;padding:12px;border-radius:12px;border:none;font-weight:bold;">💬 صيفط فواتساب</button>
+<p onclick="closeShare()" style="margin-top:15px;color:#999;cursor:pointer;font-size:13px">✕ إغلاق</p>
+</div>
+</div>
+
+<script>
+const cities=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","مكناس","أكادير","وجدة","القنيطرة","تطوان","سلا","تمارة","المحمدية","خريبكة","بني ملال","الجديدة","تازة","الناظور","سطات","برشيد","الخميسات","كلميم","ورزازات","العرائش","القصر الكبير","الصويرة","سيدي سليمان","بركان","الحسيمة","تارودانت","آسفي","الفقيه بن صالح","شفشاون","مرتيل","المضيق","الفنيدق","العيون","الداخلة","السمارة","بوجدور","الرشيدية","زاكورة","تنغير","ميدلت","أزيلال","بنجرير","اليوسفية","إنزكان","تيزنيت","سيدي قاسم","سيدي بنور","قلعة السراغنة","وادي زم","جرادة","جرسيف","صفرو","تاونات","وزان","أزرو","إفران","خنيفرة","بوعرفة","فكيك","تاوريرت","الدريوش","الحاجب","مولاي يعقوب","شيشاوة","الصخيرات","بوزنيقة","المنصورية","حد السوالم","تيط مليل","عين حرودة","الوليدية","أزمور","سيدي رحال","بوسكورة"];
+let promoData=JSON.parse(localStorage.getItem('darna_promo')||'{"title":"🎥 إشهار دارنا.ما","video":"","desc":"دارنا.ما - 78 مدينة - 0670422624","banner":"🎬 شاهد إشهار دارنا.ما الجديد","enabled":true}');
+let financeData=JSON.parse(localStorage.getItem('darna_finance')||'{"rate":2,"min":50,"method":"واتساب باي","payInfo":"0670422624"}');
+let deals=JSON.parse(localStorage.getItem('darna_deals')||'[]');
+function renderCities(list){document.getElementById('cityList').innerHTML=list.map(c=>`<div class='city-item' onclick='document.getElementById("cityInput").value="${c}"'><span>${c}</span><span>📍</span></div>`).join('');document.getElementById('count').innerText=list.length;}
+function filterCities(){renderCities(cities.filter(c=>c.includes(document.getElementById('cityInput').value)));}
+function openPromo(){document.getElementById('promoModal').style.display='flex';}
+function closePromo(){document.getElementById('promoModal').style.display='none';}
+function applyPromo(){document.getElementById('promoTitle').innerText=promoData.title;document.getElementById('promoDesc').innerText=promoData.desc;document.getElementById('promoBanner').innerText=promoData.banner;let cont=document.getElementById('promoVideoContainer');if(promoData.video){cont.innerHTML=`<iframe width="100%" height="350" src="${promoData.video}" frameborder="0" allowfullscreen></iframe>`;}else{cont.innerHTML="<p>حط الفيديو من ?admin=darna2024</p>";}}
+function saveAd(){promoData={title:document.getElementById('adTitle').value,video:document.getElementById('adVideo').value,desc:document.getElementById('adDesc').value,banner:document.getElementById('adBannerText').value,enabled:document.getElementById('adEnabled').checked};localStorage.setItem('darna_promo',JSON.stringify(promoData));applyPromo();alert('تم!');}
+function closeAdmin(){document.getElementById('adminPanel').style.display='none';}
+function switchTab(t,e){document.querySelectorAll('[id^=tab-]').forEach(x=>x.style.display='none');document.getElementById('tab-'+t).style.display='block';document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));e.target.classList.add('active');renderFinance();}
+function createDeal(){
+ let client=document.getElementById('clientName').value.trim();let agent=document.getElementById('agentName').value.trim();let type=document.getElementById('dealType').value;let amount=parseFloat(document.getElementById('dealAmount').value);
+ if(!client||!agent||!amount){alert('عمر كلشي');return;}
+ let commission=Math.max(amount*financeData.rate/100, financeData.min);
+ let deal={id:Date.now(),client,agent,type,amount,commission,status:'غير مخلص',date:new Date().toLocaleDateString('ar-MA')};
+ deals.push(deal);localStorage.setItem('darna_deals',JSON.stringify(deals));
+ let res=document.getElementById('dealResult');res.style.display='block';
+ res.innerHTML=`✅ تمت!<br>عمولة دارنا.ما (${financeData.rate}%): <b style="color:red;font-size:22px">${commission.toFixed(0)} DH</b><br>الوكيل ${agent} خاصو يخلص عبر ${financeData.method}`;
+ renderFinance();
+}
+function renderFinance(){
+ document.getElementById('commissionRate').value=financeData.rate;document.getElementById('minCommission').value=financeData.min;document.getElementById('payMethod').value=financeData.method;document.getElementById('payInfo').value=financeData.payInfo;
+ let total=deals.reduce((s,d)=>s+d.commission,0);let due=deals.filter(d=>d.status!=='مخلص').reduce((s,d)=>s+d.commission,0);
+ document.getElementById('totalIncome').innerText=total.toFixed(0)+' DH';document.getElementById('totalDue').innerText=due.toFixed(0)+' DH';document.getElementById('totalDeals').innerText=deals.length;
+ document.getElementById('allDeals').innerHTML=deals.map(d=>`<div class='transaction'><div><b>${d.client}</b> مع ${d.agent} - ${d.amount} DH - عمولة ${d.commission.toFixed(0)} - ${d.status}</div><div><button onclick="markPaid(${d.id})" class="green">خلص</button><button onclick="delDeal(${d.id})" class="red">X</button></div></div>`).join('')||'لا يوجد';
+ let agents={};deals.forEach(d=>{if(!agents[d.agent])agents[d.agent]={due:0,paid:0,count:0};if(d.status!=='مخلص')agents[d.agent].due+=d.commission;else agents[d.agent].paid+=d.commission;agents[d.agent].count++;});
+ document.getElementById('allAgents').innerHTML=Object.entries(agents).map(([n,v])=>`<div class='transaction'><div><b>${n}</b> - ${v.count} عمليات - باقي ${v.due.toFixed(0)} DH</div></div>`).join('')||'لا يوجد';
+}
+function saveFinance(){financeData={rate:parseFloat(document.getElementById('commissionRate').value),min:parseFloat(document.getElementById('minCommission').value),method:document.getElementById('payMethod').value,payInfo:document.getElementById('payInfo').value};localStorage.setItem('darna_finance',JSON.stringify(financeData));alert('تحفظات! النسبة دابا '+financeData.rate+'%');}
+function markPaid(id){let d=deals.find(x=>x.id===id);if(d){d.status='مخلص';localStorage.setItem('darna_deals',JSON.stringify(deals));renderFinance();}}
+function delDeal(id){deals=deals.filter(x=>x.id!==id);localStorage.setItem('darna_deals',JSON.stringify(deals));renderFinance();}
+function clearDeals(){if(confirm('تمسح؟')){deals=[];localStorage.setItem('darna_deals','[]');renderFinance();}}
+function openAgent(){let name=prompt('سمية الوكيل:');if(!name)return;let my=deals.filter(d=>d.agent.includes(name));let due=my.filter(d=>d.status!=='مخلص').reduce((s,d)=>s+d.commission,0);let paid=my.filter(d=>d.status==='مخلص').reduce((s,d)=>s+d.commission,0);document.getElementById('agentDisplay').innerText=name;document.getElementById('agentDeals').innerText=my.length;document.getElementById('agentDue').innerText=due.toFixed(0)+' DH';document.getElementById('agentPaid').innerText=paid.toFixed(0)+' DH';document.getElementById('agentList').innerHTML=my.map(d=>`<div class='transaction'><div>${d.client} - ${d.amount} DH - ${d.commission.toFixed(0)} - ${d.status}</div></div>`).join('');document.getElementById('agentModal').style.display='flex';}
+function payCommission(){window.open('https://wa.me/212670422624?text=بغيت نخلص عمولة دارنا.ما','_blank');}
+// QR جديد
+const siteUrl="https://abdelmajidraccach-boop.github.io/darna-ma/";
+function openShare(){document.getElementById('qrBox').style.display='flex';}
+function closeShare(){document.getElementById('qrBox').style.display='none';}
+function copyLink(){navigator.clipboard.writeText(siteUrl);alert('✅ تم نسخ الرابط!');}
+function shareWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent('شوف دارنا.ما 🏠 78 مدينة - '+siteUrl),'_blank');}
+function shareNative(){if(navigator.share){navigator.share({title:'دارنا.ما',text:'شوف هاد الموقع',url:siteUrl});}else{copyLink();}}
+renderCities(cities);applyPromo();
+if(new URLSearchParams(window.location.search).get('admin')==='darna2024'){let p=prompt('كلمة السر:');if(p==='darna123'){document.getElementById('adminPanel').style.display='block';document.getElementById('adTitle').value=promoData.title;document.getElementById('adVideo').value=promoData.video;document.getElementById('adDesc').value=promoData.desc;document.getElementById('adBannerText').value=promoData.banner;document.getElementById('adEnabled').checked=promoData.enabled;renderFinance();}}
+</script>
 </body>
 </html>
