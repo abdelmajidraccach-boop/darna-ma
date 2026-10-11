@@ -1,0 +1,13 @@
+{
+  "name": "DARNA.MA - كراء و بيع العقار",
+  "short_name": "DARNA.MA",
+  "start_url": "/darna-ma/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#FFC107",
+  "icons": [{
+    "src": "https://cdn-icons-png.flaticon.com/512/69/69881.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}
