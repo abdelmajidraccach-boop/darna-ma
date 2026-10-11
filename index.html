@@ -3,122 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Darna.ma V4 - تحكم كامل</title>
+<title id="pageTitle">DARNA.MA</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-body{font-family:'Segoe UI';margin:0;background:#0f172a;color:#fff}
-.header{background:#1e293b;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.logo{font-size:24px;font-weight:bold;color:#fbbf24}
-.header-actions{display:flex;gap:8px}
-.icon-btn{width:42px;height:42px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer}
-.icon-btn.call{background:#22c55e;color:#fff}
-.icon-btn.wa{background:#25D366;color:#fff}
-.promo-banner{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#000;padding:14px;text-align:center;cursor:pointer;font-weight:bold}
-.welcome-banner{background:#fff;color:#0f172a;padding:16px;text-align:center;font-size:20px;font-weight:bold;border-radius:0 0 15px 15px;margin:0 15px}
-.action-bar{display:flex;gap:10px;padding:15px;justify-content:center;flex-wrap:wrap}
-.big-btn{padding:14px 22px;border-radius:12px;border:none;font-weight:bold;font-size:16px;cursor:pointer;display:flex;align-items:center;gap:8px}
-.big-btn.cities{background:#fff;color:#0f172a}
-.big-btn.commission{background:#1e293b;color:#fbbf24;border:2px solid #fbbf24}
-.city-search{background:#fff;color:#000;border-radius:15px;margin:0 15px;padding:15px}
-.city-list{max-height:350px;overflow-y:auto;border:1px solid #ddd;border-radius:10px;margin-top:10px}
-.city-item{padding:11px;border-bottom:1px solid #eee;cursor:pointer;display:flex;justify-content:space-between}
-.city-item:hover{background:#fef3c7}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9999;justify-content:center;align-items:center}
-.modal-content{background:#1e293b;border:2px solid #fbbf24;border-radius:20px;padding:20px;max-width:800px;width:95%;max-height:90vh;overflow-y:auto;position:relative}
-.close{position:absolute;top:10px;left:15px;font-size:32px;cursor:pointer;color:#fbbf24}
-.admin-panel{display:none;background:#111827;padding:20px;margin:20px;border-radius:15px;border:2px dashed #fbbf24}
-input,textarea,select{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #444;background:#1f2937;color:#fff;box-sizing:border-box}
-button{background:#fbbf24;color:#000;padding:12px 25px;border:none;border-radius:10px;font-weight:bold;cursor:pointer;margin:5px}
-button.green{background:#22c55e;color:#fff}button.red{background:#ef4444;color:#fff}
-.tabs{display:flex;gap:10px;margin:15px 0;flex-wrap:wrap}.tab{padding:10px 18px;background:#1f2937;border-radius:8px;cursor:pointer;border:1px solid #333}.tab.active{background:#fbbf24;color:#000;font-weight:bold}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:15px 0}.stat-card{background:#1f2937;padding:15px;border-radius:12px;text-align:center;border:1px solid #fbbf24}
-.transaction{border:1px solid #333;padding:12px;border-radius:10px;margin:8px 0;background:#1f2937;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-#shareBtn{position:fixed;bottom:20px;right:20px;z-index:9998;background:#25D366;color:white;border:none;padding:16px 22px;border-radius:50px;font-size:18px;font-weight:bold;box-shadow:0 6px 20px rgba(0,0,0,0.4);cursor:pointer}
-#qrBox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.88);z-index:10000;justify-content:center;align-items:center;padding:20px}
-.qr-card{background:white;color:#000;padding:25px;border-radius:25px;text-align:center;max-width:340px;width:100%}
-.commission-box{background:#fef3c7;padding:16px;border-radius:12px;border:2px solid #fbbf24;margin:15px;color:#000}
+*{box-sizing:border-box}body{margin:0;font-family:'Tajawal',sans-serif;background:#000;color:#fff}
+.topbar{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center;padding:8px 12px}
+.logo{font-weight:900;font-size:22px;letter-spacing:1px;cursor:pointer}
+.logo span{color:#fbbf24}
+.top-icons{display:flex;gap:8px;align-items:center}
+.t-icon{width:32px;height:32px;border-radius:50%;background:#1a1a1a;border:1px solid #333;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer}
+.t-icon:hover{background:#222}
+.search-wrap{flex:1;margin:0 10px;position:relative}
+.search-wrap input{width:100%;background:#1a1a1a;border:1px solid #333;border-radius:20px;padding:7px 35px 7px 12px;color:#fff;font-size:13px}
+.search-wrap span{position:absolute;right:10px;top:7px;font-size:14px}
+.welcome-mini{background:linear-gradient(90deg,#fbbf24,#f59e0b);color:#000;text-align:center;padding:6px;font-size:12px;font-weight:700}
+.filters{display:flex;gap:6px;padding:10px;overflow-x:auto;scrollbar-width:none}
+.f-chip{white-space:nowrap;padding:6px 14px;border-radius:20px;background:#1a1a1a;border:1px solid #333;font-size:12px;cursor:pointer}
+.f-chip.active{background:#fff;color:#000;font-weight:700}
+.feed{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#111}
+@media(max-width:768px){.feed{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:769px){.feed{grid-template-columns:repeat(4,1fr)}}
+.card{aspect-ratio:4/5;background:#111;position:relative;overflow:hidden;cursor:pointer}
+.card img{width:100%;height:100%;object-fit:cover;transition:0.3s}
+.card:hover img{transform:scale(1.05)}
+.card-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.9));padding:30px 6px 6px}
+.card-type{position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.7);backdrop-filter:blur(5px);padding:2px 7px;border-radius:10px;font-size:9px}
+.card-price{font-weight:900;font-size:12px;color:#fbbf24}
+.card-title{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-loc{font-size:9px;color:#aaa}
+.promo-strip{background:#fff;color:#000;padding:8px 12px;margin:2px 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;cursor:pointer}
+.action-row{display:flex;gap:6px;padding:10px;justify-content:center}
+.a-btn{padding:6px 12px;border-radius:20px;border:1px solid #333;background:#1a1a1a;color:#fff;font-size:11px;cursor:pointer;display:flex;gap:4px;align-items:center}
+.a-btn.active{background:#fff;color:#000}
+.share-mini{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:#1a1a1a;border:1px solid #333;border-radius:30px;padding:6px 12px;display:flex;gap:10px;z-index:999;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+.s-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px}
+.s-icon.copy{background:#222}.s-icon.qr{background:#fff;color:#000}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:2000;justify-content:center;align-items:center;padding:10px}
+.modal-box{background:#111;border:1px solid #333;border-radius:16px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto;padding:16px;position:relative}
+.close{position:absolute;left:12px;top:8px;font-size:24px;cursor:pointer}
+.admin{background:#0a0a0a;border:2px dashed #fbbf24;margin:10px;padding:14px;border-radius:12px;display:none}
+input,select,textarea{width:100%;background:#1a1a1a;border:1px solid #333;color:#fff;padding:9px;border-radius:8px;margin:6px 0;font-size:13px}
+button.save{background:#fbbf24;color:#000;border:none;padding:10px 18px;border-radius:20px;font-weight:700;cursor:pointer;width:100%;margin-top:6px}
+.tabbar{display:flex;gap:6px;overflow-x:auto;margin:10px 0}.tab{padding:6px 12px;background:#1a1a1a;border:1px solid #333;border-radius:20px;cursor:pointer;font-size:11px;white-space:nowrap}.tab.active{background:#fbbf24;color:#000}
+.city-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;max-height:300px;overflow-y:auto}
 </style>
 </head>
 <body>
-<div class="header">
-<div class="logo">💰 دارنا.ما V4</div>
-<div class="header-actions">
-<button class="icon-btn call" onclick="callNow()">📞</button>
-<button class="icon-btn wa" onclick="waNow()">💬</button>
-<a onclick="openAgent()" style="color:#22c55e;cursor:pointer;margin-right:8px;font-size:14px">لوحة الوكيل</a>
+<div class="topbar">
+<div class="logo" id="logoDisplay" onclick="location.reload()">DARNA<span>.MA</span></div>
+<div class="search-wrap"><span>🔍</span><input id="mainSearch" placeholder="بحث: كراء، بيع، رهن، مدينة..." onkeyup="doSearch(this.value)"></div>
+<div class="top-icons">
+<div class="t-icon" onclick="openCities()">🗺️</div>
+<div class="t-icon" onclick="openLang()">🌐</div>
+<div class="t-icon" onclick="waNow()">💬</div>
+<div class="t-icon" onclick="callNow()">📞</div>
 </div>
 </div>
+<div class="welcome-mini" id="welcomeDisplay">يا أهلا وسهلا بكم في DARNA.MA 🏠</div>
+<div class="filters" id="filters">
+<div class="f-chip active" onclick="filterFeed('all',this)">الكل</div>
+<div class="f-chip" onclick="filterFeed('كراء',this)">كراء</div>
+<div class="f-chip" onclick="filterFeed('بيع',this)">بيع</div>
+<div class="f-chip" onclick="filterFeed('فيلا',this)">فيلات</div>
+<div class="f-chip" onclick="filterFeed('أرض',this)">أراضي</div>
+<div class="f-chip" onclick="filterFeed('محل',this)">محلات</div>
+</div>
+<div class="promo-strip" onclick="openPromo()"><span id="bannerText">🎬 شاهد إشهار دارنا.ما الجديد</span><span>▶️</span></div>
+<div class="feed" id="feed"></div>
 
-<div class="promo-banner" id="promoBanner" onclick="openPromo()">🎬 شاهد إشهار دارنا.ما - اضغط هنا!</div>
-<div class="welcome-banner" id="welcomeBanner">يا أهلا وسهلا بكم في دارنا.ما 🏠</div>
-
-<div class="action-bar">
-<button class="big-btn cities" onclick="openCities()">🔍 بحث المدن</button>
-<button class="big-btn commission" onclick="openCommission()">💰 العمولة</button>
+<div class="action-row">
+<div class="a-btn" onclick="openCities()">🔍 بحث المدن</div>
+<div class="a-btn" onclick="openCommission()">💰 العمولة</div>
+<div class="a-btn" onclick="openAgent()">🏢 الوكيل</div>
 </div>
 
-<div id="cityModal" class="modal"><div class="modal-content"><span class="close" onclick="closeCities()">&times;</span><h2 style="color:#fbbf24">🔍 اختار المدينة</h2><input type="text" id="cityInput" placeholder="اكتب مدينة..." onkeyup="filterCities()"><div style="font-size:13px;color:#aaa">العدد: <span id="count">78</span></div><div class="city-list" id="cityList"></div></div></div>
-
-<div id="commissionModal" class="modal"><div class="modal-content"><span class="close" onclick="closeCommission()">&times;</span><h2 style="color:#fbbf24">💰 نظام العمولة</h2><div class="commission-box"><h3 style="margin:0;color:#000">💰 إتمام مهمة - السيت كياخد النصيب</h3><input id="clientName" placeholder="سمية الزبون"><input id="agentName" placeholder="سمية الوكيل"><select id="dealType"><option>كراء</option><option>بيع</option><option>رهن</option></select><input id="dealAmount" type="number" placeholder="المبلغ DH"><button class="green" style="width:100%" onclick="createDeal()">✅ تأكيد وحساب العمولة</button><div id="dealResult" style="color:#000;margin-top:10px;font-weight:bold;background:#fff;padding:10px;border-radius:8px;display:none"></div></div></div></div>
-
-<div id="promoModal" class="modal"><div class="modal-content"><span class="close" onclick="closePromo()">&times;</span><h2 id="promoTitle" style="color:#fbbf24"></h2><div id="promoVideoContainer" style="background:#000;border-radius:12px;min-height:300px;display:flex;align-items:center;justify-content:center;padding:20px"></div><p id="promoDesc"></p></div></div>
-<div id="agentModal" class="modal"><div class="modal-content"><span class="close" onclick="document.getElementById('agentModal').style.display='none'">&times;</span><h2 style="color:#22c55e">لوحة الوكيل - <span id="agentDisplay"></span></h2><div class="stats"><div class="stat-card"><div>العمليات</div><h2 id="agentDeals">0</h2></div><div class="stat-card"><div>خاصك تخلص</div><h2 id="agentDue" style="color:#ef4444">0 DH</h2></div><div class="stat-card"><div>خلصتي</div><h2 id="agentPaid" style="color:#22c55e">0 DH</h2></div></div><div id="agentList"></div><button class="green" onclick="payCommission()">💳 خلص عبر واتساب</button></div></div>
-
-<div id="adminPanel" class="admin-panel">
-<h2 style="color:#fbbf24">⚙️ برج التحكم V4</h2>
-<div class="tabs"><div class="tab active" onclick="switchTab('welcome',event)">👋 ترحيب</div><div class="tab" onclick="switchTab('ads',event)">🎬 إشهار</div><div class="tab" onclick="switchTab('contact',event)">📞 اتصال</div><div class="tab" onclick="switchTab('finance',event)">💰 مالية</div><div class="tab" onclick="switchTab('deals',event)">📋 عمليات</div><div class="tab" onclick="switchTab('agents',event)">🏢 وكلاء</div></div>
-
-<div id="tab-welcome"><label>نص الترحيب (تبدلو وقتما بغيتي):</label><input id="welcomeText"><label>أمثلة سريعة:</label><div style="display:flex;gap:5px;flex-wrap:wrap"><button onclick="document.getElementById('welcomeText').value='يا أهلا وسهلا بكم في دارنا.ما 🏠'">يا أهلا وسهلا</button><button onclick="document.getElementById('welcomeText').value='مرحبا بكم في دارنا.ما 💛'">مرحبا</button><button onclick="document.getElementById('welcomeText').value='اتصل بنا الآن - 78 مدينة في خدمتك 📞'">اتصل بنا</button></div><button onclick="saveWelcome()">💾 حفظ الترحيب</button></div>
-
-<div id="tab-ads" style="display:none"><label>عنوان:</label><input id="adTitle"><label>رابط يوتيوب embed:</label><input id="adVideo"><label>وصف:</label><textarea id="adDesc"></textarea><label>بانر:</label><input id="adBannerText"><label><input type="checkbox" id="adEnabled" checked> مفعل</label><br><button onclick="saveAd()">💾 حفظ</button></div>
-
-<div id="tab-contact" style="display:none"><label>رقم الهاتف:</label><input id="phoneNum" value="0670422624"><label>رابط واتساب (رقم بلا +):</label><input id="waNum" value="212670422624"><button onclick="saveContact()">💾 حفظ الاتصال</button></div>
-
-<div id="tab-finance" style="display:none"><label>نسبة %:</label><input id="commissionRate" type="number" value="2"><label>أقل عمولة:</label><input id="minCommission" type="number" value="50"><label>طريقة:</label><select id="payMethod"><option>واتساب باي</option><option>تحويل بنكي</option><option>كاش</option></select><label>معلومات:</label><input id="payInfo" value="0670422624"><div class="stats"><div class="stat-card"><div>دخل</div><h2 id="totalIncome">0</h2></div><div class="stat-card"><div>باقي</div><h2 id="totalDue">0</h2></div><div class="stat-card"><div>عمليات</div><h2 id="totalDeals">0</h2></div></div><button class="green" onclick="saveFinance()">💾 حفظ المالية</button></div>
-
-<div id="tab-deals" style="display:none"><div id="allDeals"></div><button class="red" onclick="clearDeals()">مسح</button></div>
-<div id="tab-agents" style="display:none"><div id="allAgents"></div></div>
-<button onclick="closeAdmin()">إغلاق</button>
+<div id="cityModal" class="modal"><div class="modal-box"><span class="close" onclick="closeM('cityModal')">&times;</span><h3>🗺️ المدن (78)</h3><input id="cityInput" placeholder="كتب مدينة..." onkeyup="filterCities()"><div class="city-grid" id="cityList"></div></div></div>
+<div id="detailModal" class="modal"><div class="modal-box" id="detailBox"></div></div>
+<div id="commissionModal" class="modal"><div class="modal-box"><span class="close" onclick="closeM('commissionModal')">&times;</span><h3>💰 حساب العمولة</h3><input id="clientName" placeholder="الزبون"><input id="agentName" placeholder="الوكيل"><select id="dealType"><option>كراء</option><option>بيع</option><option>رهن</option></select><input id="dealAmount" type="number" placeholder="المبلغ DH"><button class="save" onclick="createDeal()">حساب</button><div id="dealRes" style="background:#fff;color:#000;padding:10px;border-radius:8px;margin-top:10px;display:none"></div></div></div>
+<div id="promoModal" class="modal"><div class="modal-box"><span class="close" onclick="closeM('promoModal')">&times;</span><h3 id="promoTitle"></h3><div id="promoVideo"></div><p id="promoDesc"></p></div></div>
+<div id="adminPanel" class="admin">
+<h3 style="color:#fbbf24;margin:0">⚙️ برج التحكم V5 - بلا مبرمج</h3>
+<div class="tabbar"><div class="tab active" onclick="switchTab('brand',event)">🏷️ الاسم</div><div class="tab" onclick="switchTab('welcome',event)">👋 ترحيب</div><div class="tab" onclick="switchTab('ads',event)">🎬 إشهار</div><div class="tab" onclick="switchTab('contact',event)">📞 اتصال</div><div class="tab" onclick="switchTab('props',event)">🏠 عقارات</div><div class="tab" onclick="switchTab('finance',event)">💰 مالية</div></div>
+<div id="tab-brand"><label>اسم الموقع (لوغو):</label><input id="brandName" placeholder="DARNA.MA"><button class="save" onclick="saveBrand()">💾 حفظ الاسم</button><p style="font-size:11px;color:#888">تقدر تبدلو وقتما بغيتي: DARNA.MA / دارنا.ما / أي اسم</p></div>
+<div id="tab-welcome" style="display:none"><input id="welcomeText"><button class="save" onclick="saveWelcome()">حفظ الترحيب</button><div style="display:flex;gap:4px"><button onclick="setWelcome('يا أهلا وسهلا بكم في '+brand+' 🏠')" style="flex:1;padding:6px;border-radius:10px;border:1px solid #333;background:#1a1a1a;color:#fff;font-size:10px">أهلا وسهلا</button><button onclick="setWelcome('مرحبا بكم 💛')" style="flex:1;padding:6px;border-radius:10px;border:1px solid #333;background:#1a1a1a;color:#fff;font-size:10px">مرحبا</button><button onclick="setWelcome('اتصل بنا الآن 📞')" style="flex:1;padding:6px;border-radius:10px;border:1px solid #333;background:#1a1a1a;color:#fff;font-size:10px">اتصل بنا</button></div></div>
+<div id="tab-ads" style="display:none"><input id="adTitle" placeholder="عنوان"><input id="adVideo" placeholder="رابط يوتيوب embed"><textarea id="adDesc" placeholder="وصف"></textarea><input id="adBannerText" placeholder="نص البانر"><button class="save" onclick="saveAd()">حفظ</button></div>
+<div id="tab-contact" style="display:none"><input id="phoneNum"><input id="waNum"><button class="save" onclick="saveContact()">حفظ</button></div>
+<div id="tab-props" style="display:none"><p style="font-size:11px">العقارات كتتحكم فيهم من الكود - تقدر تزيد صور جديدة</p></div>
+<div id="tab-finance" style="display:none"><input id="commissionRate" type="number"><input id="minCommission" type="number"><div id="financeStats"></div><button class="save" onclick="saveFinance()">حفظ</button><div id="allDeals"></div></div>
+<button onclick="closeM('adminPanel')" style="background:#222;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:20px;margin-top:10px">إغلاق</button>
 </div>
 
-<button id="shareBtn" onclick="openShare()">📱 بارطاجي</button>
-<div id="qrBox" onclick="if(event.target==this) closeShare()"><div class="qr-card"><h3>شارك الموقع</h3><img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://abdelmajidraccach-boop.github.io/darna-ma/" style="width:100%;border-radius:15px;border:3px solid #eee;"><button onclick="shareNative()" style="width:100%;background:#0f172a;color:white;padding:12px;border-radius:12px;border:none;font-weight:bold;margin:5px 0;">🚀 مشاركة بلمسة</button><button onclick="copyLink()" style="width:100%;background:#f1f3f5;color:#333;padding:12px;border-radius:12px;border:none;font-weight:bold;margin:5px 0;">📋 نسخ الرابط</button><button onclick="shareWhatsapp()" style="width:100%;background:#25D366;color:white;padding:12px;border-radius:12px;border:none;font-weight:bold;">💬 واتساب</button><p onclick="closeShare()" style="margin-top:10px;color:#999;cursor:pointer">✕ إغلاق</p></div></div>
+<div class="share-mini"><div class="s-icon copy" onclick="copyLink()" title="نسخ الرابط">🔗</div><div class="s-icon qr" onclick="openQR()" title="QR">◫</div></div>
+<div id="qrModal" class="modal"><div class="modal-box" style="text-align:center"><span class="close" onclick="closeM('qrModal')">&times;</span><h3>شارك DARNA.MA</h3><img id="qrImg" style="width:100%;border-radius:12px"><button class="save" onclick="shareNative()">🚀 مشاركة بلمسة</button><button class="save" style="background:#25D366;color:#fff" onclick="shareWA()">💬 واتساب</button></div></div>
 
 <script>
-const cities=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","مكناس","أكادير","وجدة","القنيطرة","تطوان","سلا","تمارة","المحمدية","خريبكة","بني ملال","الجديدة","تازة","الناظور","سطات","برشيد","الخميسات","كلميم","ورزازات","العرائش","القصر الكبير","الصويرة","سيدي سليمان","بركان","الحسيمة","تارودانت","آسفي","الفقيه بن صالح","شفشاون","مرتيل","المضيق","الفنيدق","العيون","الداخلة","السمارة","بوجدور","الرشيدية","زاكورة","تنغير","ميدلت","أزيلال","بنجرير","اليوسفية","إنزكان","تيزنيت","سيدي قاسم","سيدي بنور","قلعة السراغنة","وادي زم","جرادة","جرسيف","صفرو","تاونات","وزان","أزرو","إفران","خنيفرة","بوعرفة","فكيك","تاوريرت","الدريوش","الحاجب","مولاي يعقوب","شيشاوة","الصخيرات","بوزنيقة","المنصورية","حد السوالم","تيط مليل","عين حرودة","الوليدية","أزمور","سيدي رحال","بوسكورة"];
-let promoData=JSON.parse(localStorage.getItem('darna_promo')||'{"title":"🎥 إشهار دارنا.ما","video":"","desc":"دارنا.ما - 78 مدينة - 0670422624","banner":"🎬 شاهد إشهار دارنا.ما الجديد","enabled":true}');
-let financeData=JSON.parse(localStorage.getItem('darna_finance')||'{"rate":2,"min":50,"method":"واتساب باي","payInfo":"0670422624"}');
-let contactData=JSON.parse(localStorage.getItem('darna_contact')||'{"phone":"0670422624","wa":"212670422624"}');
-let welcomeData=localStorage.getItem('darna_welcome')||'يا أهلا وسهلا بكم في دارنا.ما 🏠';
+let brand=localStorage.getItem('darna_brand')||'DARNA.MA';
+let welcome=localStorage.getItem('darna_welcome')||'يا أهلا وسهلا بكم في DARNA.MA 🏠';
+let contact=JSON.parse(localStorage.getItem('darna_contact')||'{"phone":"0670422624","wa":"212670422624"}');
+let promo=JSON.parse(localStorage.getItem('darna_promo')||'{"title":"🎥 إشهار DARNA.MA","video":"","desc":"DARNA.MA - 78 مدينة","banner":"🎬 شاهد إشهار دارنا.ما الجديد","enabled":true}');
+let finance=JSON.parse(localStorage.getItem('darna_finance')||'{"rate":2,"min":50}');
 let deals=JSON.parse(localStorage.getItem('darna_deals')||'[]');
-function renderCities(list){document.getElementById('cityList').innerHTML=list.map(c=>`<div class='city-item' onclick='document.getElementById("cityInput").value="${c}";'><span>${c}</span><span>📍</span></div>`).join('');document.getElementById('count').innerText=list.length;}
+const cities=["الدار البيضاء","الرباط","مراكش","فاس","طنجة","مكناس","أكادير","وجدة","القنيطرة","تطوان","سلا","تمارة","المحمدية","خريبكة","بني ملال","الجديدة","تازة","الناظور","سطات","برشيد","الخميسات","كلميم","ورزازات","العرائش","القصر الكبير","الصويرة","سيدي سليمان","بركان","الحسيمة","تارودانت","آسفي","الفقيه بن صالح","شفشاون","مرتيل","المضيق","الفنيدق","العيون","الداخلة","السمارة","بوجدور","الرشيدية","زاكورة","تنغير","ميدلت","أزيلال","بنجرير","اليوسفية","إنزكان","تيزنيت","سيدي قاسم","سيدي بنور","قلعة السراغنة","وادي زم","جرادة","جرسيف","صفرو","تاونات","وزان","أزرو","إفران","خنيفرة","بوعرفة","فكيك","تاوريرت","الدريوش","الحاجب","مولاي يعقوب","شيشاوة","الصخيرات","بوزنيقة","المنصورية","حد السوالم","تيط مليل","عين حرودة","الوليدية","أزمور","سيدي رحال","بوسكورة"];
+let properties=[
+{id:1,type:'كراء',cat:'شقة',city:'الدار البيضاء',price:'3,500 DH/شهر',title:'شقة عصرية 2 غرف',img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400'},
+{id:2,type:'بيع',cat:'فيلا',city:'مراكش',price:'1,250,000 DH',title:'فيلا فاخرة مع مسبح',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400'},
+{id:3,type:'بيع',cat:'أرض',city:'الرباط',price:'800,000 DH',title:'أرض 300م² للبيع',img:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400'},
+{id:4,type:'كراء',cat:'محل',city:'طنجة',price:'4,000 DH',title:'محل تجاري شارع رئيسي',img:'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400'},
+{id:5,type:'رهن',cat:'شقة',city:'فاس',price:'20 مليون رهن',title:'شقة رهن 2M + 1000 كراء',img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400'},
+{id:6,type:'بيع',cat:'شقة',city:'أكادير',price:'650,000 DH',title:'شقة مطلة على البحر',img:'https://images.unsplash.com/photo-1560448205-4d9b3e6bb6db?w=400'},
+{id:7,type:'كراء',cat:'فيلا',city:'تمارة',price:'8,000 DH',title:'فيلا للكراء اليومي',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400'},
+{id:8,type:'بيع',cat:'محل',city:'مكناس',price:'450,000 DH',title:'محل + سدة',img:'https://images.unsplash.com/photo-1555529771-7888783a18d3?w=400'},
+{id:9,type:'كراء',cat:'شقة',city:'سلا',price:'2,800 DH',title:'شقة عائلية',img:'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=400'},
+{id:10,type:'بيع',cat:'أرض',city:'برشيد',price:'350,000 DH',title:'أرض فلاحية 1000م²',img:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400'},
+{id:11,type:'رهن',cat:'شقة',city:'القنيطرة',price:'15 مليون رهن',title:'رهن شقة 1.5M',img:'https://images.unsplash.com/photo-1493809842364-78817add58d1?w=400'},
+{id:12,type:'كراء',cat:'شقة',city:'وجدة',price:'2,200 DH',title:'شقة للطلبة',img:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=400'},
+{id:13,type:'بيع',cat:'فيلا',city:'الدار البيضاء',price:'2,100,000 DH',title:'فيلا عصرية كاليفورنيا',img:'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400'},
+{id:14,type:'بيع',cat:'شقة',city:'تطوان',price:'520,000 DH',title:'شقة 80م²',img:'https://images.unsplash.com/photo-1560184611-6a68d14d14f2?w=400'},
+{id:15,type:'كراء',cat:'محل',city:'مراكش',price:'6,000 DH',title:'محل في جليز',img:'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400'},
+{id:16,type:'بيع',cat:'أرض',city:'الصخيرات',price:'1,100,000 DH',title:'أرض فيلا 500م²',img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400'},
+{id:17,type:'كراء',cat:'شقة',city:'المحمدية',price:'3,000 DH',title:'شقة قرب البحر',img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400'},
+{id:18,type:'رهن',cat:'فيلا',city:'الرباط',price:'30 مليون رهن',title:'رهين فيلا سويسي',img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400'},
+{id:19,type:'بيع',cat:'شقة',city:'فاس',price:'720,000 DH',title:'شقة فاخرة',img:'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=400'},
+{id:20,type:'كراء',cat:'أرض',city:'بوزنيقة',price:'1,500 DH',title:'أرض للكراء',img:'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400'},
+{id:21,type:'بيع',cat:'محل',city:'أكادير',price:'600,000 DH',title:'محل تجاري',img:'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400'},
+{id:22,type:'كراء',cat:'شقة',city:'طنجة',price:'3,200 DH',title:'شقة مفروشة',img:'https://images.unsplash.com/photo-1493809842364-78817add58d1?w=400'},
+{id:23,type:'بيع',cat:'فيلا',city:'سلا',price:'1,800,000 DH',title:'فيلا حدائق',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400'},
+{id:24,type:'كراء',cat:'شقة',city:'الدار البيضاء',price:'4,500 DH',title:'شقة لاكوست',img:'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=400'}
+];
+function renderFeed(list){document.getElementById('feed').innerHTML=list.map(p=>`<div class='card' onclick='openDetail(${p.id})'><span class='card-type'>${p.type} • ${p.cat}</span><img src='${p.img}' loading='lazy'><div class='card-overlay'><div class='card-price'>${p.price}</div><div class='card-title'>${p.title}</div><div class='card-loc'>📍 ${p.city}</div></div></div>`).join('');}
+function doSearch(q){q=q.toLowerCase();if(!q){renderFeed(properties.filter(p=>p.type!=='رهن'));return;}let showRahn=q.includes('رهن')||q.includes('رهين');let f=properties.filter(p=>{if(!showRahn && p.type==='رهن') return false;return (p.title+p.city+p.type+p.cat+p.price).toLowerCase().includes(q);});renderFeed(f);}
+function filterFeed(type,el){document.querySelectorAll('.f-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');if(type==='all'){renderFeed(properties.filter(p=>p.type!=='رهن'))}else{renderFeed(properties.filter(p=>p.type===type||p.cat===type))}}
+function openDetail(id){let p=properties.find(x=>x.id===id);document.getElementById('detailBox').innerHTML=`<span class='close' onclick='closeM("detailModal")'>&times;</span><img src='${p.img}' style='width:100%;border-radius:12px'><h3>${p.title}</h3><p>📍 ${p.city} • ${p.type} • ${p.cat}</p><h2 style='color:#fbbf24'>${p.price}</h2><button class='save' onclick='waNow()'>💬 تواصل واتساب</button><button class='save' style='background:#222;color:#fff' onclick='callNow()'>📞 اتصل</button>`;document.getElementById('detailModal').style.display='flex';}
+function renderCities(list){document.getElementById('cityList').innerHTML=list.map(c=>`<div style='background:#1a1a1a;border:1px solid #333;padding:8px;border-radius:10px;font-size:12px;cursor:pointer' onclick='filterByCity("${c}")'>📍 ${c}</div>`).join('');}
 function filterCities(){renderCities(cities.filter(c=>c.includes(document.getElementById('cityInput').value)));}
-function openCities(){document.getElementById('cityModal').style.display='flex';renderCities(cities);}function closeCities(){document.getElementById('cityModal').style.display='none';}
-function openCommission(){document.getElementById('commissionModal').style.display='flex';}function closeCommission(){document.getElementById('commissionModal').style.display='none';}
-function openPromo(){document.getElementById('promoModal').style.display='flex';}function closePromo(){document.getElementById('promoModal').style.display='none';}
-function applyPromo(){document.getElementById('promoTitle').innerText=promoData.title;document.getElementById('promoDesc').innerText=promoData.desc;document.getElementById('promoBanner').innerText=promoData.banner;let cont=document.getElementById('promoVideoContainer');if(promoData.video){cont.innerHTML=`<iframe width="100%" height="350" src="${promoData.video}" frameborder="0" allowfullscreen></iframe>`;}else{cont.innerHTML="<p>حط الفيديو من ?admin=darna2024</p>";}}
-function applyWelcome(){document.getElementById('welcomeBanner').innerText=welcomeData;}
-function saveWelcome(){welcomeData=document.getElementById('welcomeText').value;localStorage.setItem('darna_welcome',welcomeData);applyWelcome();alert('تحفظ الترحيب: '+welcomeData);}
-function saveContact(){contactData={phone:document.getElementById('phoneNum').value,wa:document.getElementById('waNum').value};localStorage.setItem('darna_contact',JSON.stringify(contactData));alert('تحفظ الاتصال!');}
-function callNow(){window.location.href='tel:'+contactData.phone;}
-function waNow(){window.open('https://wa.me/'+contactData.wa,'_blank');}
-function saveAd(){promoData={title:document.getElementById('adTitle').value,video:document.getElementById('adVideo').value,desc:document.getElementById('adDesc').value,banner:document.getElementById('adBannerText').value,enabled:document.getElementById('adEnabled').checked};localStorage.setItem('darna_promo',JSON.stringify(promoData));applyPromo();alert('تم!');}
-function closeAdmin(){document.getElementById('adminPanel').style.display='none';}
-function switchTab(t,e){document.querySelectorAll('[id^=tab-]').forEach(x=>x.style.display='none');document.getElementById('tab-'+t).style.display='block';document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));e.target.classList.add('active');if(t==='finance')renderFinance();}
-function createDeal(){let client=document.getElementById('clientName').value.trim();let agent=document.getElementById('agentName').value.trim();let type=document.getElementById('dealType').value;let amount=parseFloat(document.getElementById('dealAmount').value);if(!client||!agent||!amount){alert('عمر كلشي');return;}let commission=Math.max(amount*financeData.rate/100, financeData.min);let deal={id:Date.now(),client,agent,type,amount,commission,status:'غير مخلص',date:new Date().toLocaleDateString('ar-MA')};deals.push(deal);localStorage.setItem('darna_deals',JSON.stringify(deals));let res=document.getElementById('dealResult');res.style.display='block';res.innerHTML=`✅ تمت!<br>عمولة دارنا.ما (${financeData.rate}%): <b style="color:red;font-size:22px">${commission.toFixed(0)} DH</b>`;renderFinance();}
-function renderFinance(){document.getElementById('commissionRate').value=financeData.rate;document.getElementById('minCommission').value=financeData.min;document.getElementById('payMethod').value=financeData.method;document.getElementById('payInfo').value=financeData.payInfo;let total=deals.reduce((s,d)=>s+d.commission,0);let due=deals.filter(d=>d.status!=='مخلص').reduce((s,d)=>s+d.commission,0);document.getElementById('totalIncome').innerText=total.toFixed(0)+' DH';document.getElementById('totalDue').innerText=due.toFixed(0)+' DH';document.getElementById('totalDeals').innerText=deals.length;document.getElementById('allDeals').innerHTML=deals.map(d=>`<div class='transaction'><div><b>${d.client}</b> مع ${d.agent} - ${d.amount} DH - ${d.commission.toFixed(0)} - ${d.status}</div><div><button onclick="markPaid(${d.id})" class="green">خلص</button><button onclick="delDeal(${d.id})" class="red">X</button></div></div>`).join('')||'لا يوجد';let agents={};deals.forEach(d=>{if(!agents[d.agent])agents[d.agent]={due:0,paid:0,count:0};if(d.status!=='مخلص')agents[d.agent].due+=d.commission;else agents[d.agent].paid+=d.commission;agents[d.agent].count++;});document.getElementById('allAgents').innerHTML=Object.entries(agents).map(([n,v])=>`<div class='transaction'><div><b>${n}</b> - ${v.count} عمليات - باقي ${v.due.toFixed(0)} DH</div></div>`).join('')||'لا يوجد';}
-function saveFinance(){financeData={rate:parseFloat(document.getElementById('commissionRate').value),min:parseFloat(document.getElementById('minCommission').value),method:document.getElementById('payMethod').value,payInfo:document.getElementById('payInfo').value};localStorage.setItem('darna_finance',JSON.stringify(financeData));alert('تحفظات!');}
-function markPaid(id){let d=deals.find(x=>x.id===id);if(d){d.status='مخلص';localStorage.setItem('darna_deals',JSON.stringify(deals));renderFinance();}}
-function delDeal(id){deals=deals.filter(x=>x.id!==id);localStorage.setItem('darna_deals',JSON.stringify(deals));renderFinance();}
-function clearDeals(){if(confirm('تمسح؟')){deals=[];localStorage.setItem('darna_deals','[]');renderFinance();}}
-function openAgent(){let name=prompt('سمية الوكيل:');if(!name)return;let my=deals.filter(d=>d.agent.includes(name));let due=my.filter(d=>d.status!=='مخلص').reduce((s,d)=>s+d.commission,0);let paid=my.filter(d=>d.status==='مخلص').reduce((s,d)=>s+d.commission,0);document.getElementById('agentDisplay').innerText=name;document.getElementById('agentDeals').innerText=my.length;document.getElementById('agentDue').innerText=due.toFixed(0)+' DH';document.getElementById('agentPaid').innerText=paid.toFixed(0)+' DH';document.getElementById('agentList').innerHTML=my.map(d=>`<div class='transaction'><div>${d.client} - ${d.amount} DH - ${d.commission.toFixed(0)} - ${d.status}</div></div>`).join('');document.getElementById('agentModal').style.display='flex';}
-function payCommission(){window.open('https://wa.me/'+contactData.wa+'?text=بغيت نخلص عمولة دارنا.ما','_blank');}
-const siteUrl="https://abdelmajidraccach-boop.github.io/darna-ma/";
-function openShare(){document.getElementById('qrBox').style.display='flex';}function closeShare(){document.getElementById('qrBox').style.display='none';}
-function copyLink(){navigator.clipboard.writeText(siteUrl);alert('✅ تم النسخ!');}
-function shareWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent('شوف دارنا.ما 🏠 '+siteUrl),'_blank');}
-function shareNative(){if(navigator.share){navigator.share({title:'دارنا.ما',url:siteUrl});}else{copyLink();}}
-renderCities(cities);applyPromo();applyWelcome();
-if(new URLSearchParams(window.location.search).get('admin')==='darna2024'){let p=prompt('كلمة السر:');if(p==='darna123'){document.getElementById('adminPanel').style.display='block';document.getElementById('adTitle').value=promoData.title;document.getElementById('adVideo').value=promoData.video;document.getElementById('adDesc').value=promoData.desc;document.getElementById('adBannerText').value=promoData.banner;document.getElementById('adEnabled').checked=promoData.enabled;document.getElementById('welcomeText').value=welcomeData;document.getElementById('phoneNum').value=contactData.phone;document.getElementById('waNum').value=contactData.wa;renderFinance();}}
+function filterByCity(city){closeM('cityModal');document.getElementById('mainSearch').value=city;doSearch(city);}
+function openCities(){document.getElementById('cityModal').style.display='flex';renderCities(cities);}function openCommission(){document.getElementById('commissionModal').style.display='flex';}
+function openPromo(){document.getElementById('promoModal').style.display='flex';document.getElementById('promoTitle').innerText=promo.title;document.getElementById('promoDesc').innerText=promo.desc;let v=document.getElementById('promoVideo');v.innerHTML=promo.video?`<iframe width='100%' height='250' src='${promo.video}' frameborder='0' allowfullscreen></iframe>`:'<p>لا يوجد فيديو</p>';}
+function closeM(id){document.getElementById(id).style.display='none';}
+function saveBrand(){brand=document.getElementById('brandName').value||'DARNA.MA';localStorage.setItem('darna_brand',brand);document.getElementById('logoDisplay').innerHTML=brand.includes('.')?brand.split('.')[0]+'<span>.'+brand.split('.')[1]+'</span>':brand;document.getElementById('pageTitle').innerText=brand;alert('تم حفظ الاسم: '+brand);}
+function setWelcome(t){document.getElementById('welcomeText').value=t;}
+function saveWelcome(){welcome=document.getElementById('welcomeText').value;localStorage.setItem('darna_welcome',welcome);document.getElementById('welcomeDisplay').innerText=welcome;alert('تحفظ!');}
+function saveAd(){promo={title:document.getElementById('adTitle').value,video:document.getElementById('adVideo').value,desc:document.getElementById('adDesc').value,banner:document.getElementById('adBannerText').value,enabled:true};localStorage.setItem('darna_promo',JSON.stringify(promo));document.getElementById('bannerText').innerText=promo.banner;alert('تم!');}
+function saveContact(){contact={phone:document.getElementById('phoneNum').value,wa:document.getElementById('waNum').value};localStorage.setItem('darna_contact',JSON.stringify(contact));alert('تم!');}
+function callNow(){location.href='tel:'+contact.phone;}function waNow(){window.open('https://wa.me/'+contact.wa,'_blank');}
+function saveFinance(){finance={rate:parseFloat(document.getElementById('commissionRate').value),min:parseFloat(document.getElementById('minCommission').value)};localStorage.setItem('darna_finance',JSON.stringify(finance));alert('تم!');}
+function createDeal(){let cl=document.getElementById('clientName').value,ag=document.getElementById('agentName').value,am=parseFloat(document.getElementById('dealAmount').value);if(!cl||!ag||!am)return alert('عمر كلشي');let com=Math.max(am*finance.rate/100,finance.min);let d={id:Date.now(),client:cl,agent:ag,amount:am,commission:com,status:'غير مخلص',date:new Date().toLocaleDateString()};deals.push(d);localStorage.setItem('darna_deals',JSON.stringify(deals));let r=document.getElementById('dealRes');r.style.display='block';r.innerHTML=`عمولة: <b>${com.toFixed(0)} DH</b>`;renderFinanceList();}
+function renderFinanceList(){document.getElementById('allDeals').innerHTML=deals.map(d=>`<div style='background:#1a1a1a;padding:8px;border-radius:8px;margin:4px 0;font-size:11px'>${d.client} - ${d.commission.toFixed(0)} DH - ${d.status}</div>`).join('');}
+function switchTab(t,e){document.querySelectorAll('[id^=tab-]').forEach(x=>x.style.display='none');document.getElementById('tab-'+t).style.display='block';document.querySelectorAll('.tabbar.tab').forEach(x=>x.classList.remove('active'));e.target.classList.add('active');}
+function openLang(){alert('🌐 اللغات قريبا: العربية / Français / English - تقدر تزيدها من برج التحكم');}
+function openAgent(){let n=prompt('اسم الوكيل:');if(!n)return;let my=deals.filter(d=>d.agent.includes(n));alert(n+': '+my.length+' عمليات - باقي: '+my.filter(d=>d.status!=='مخلص').reduce((s,d)=>s+d.commission,0).toFixed(0)+' DH');}
+const siteUrl='https://abdelmajidraccach-boop.github.io/darna-ma/';
+function copyLink(){navigator.clipboard.writeText(siteUrl);alert('🔗 تم نسخ الرابط!');}
+function openQR(){document.getElementById('qrImg').src='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+encodeURIComponent(siteUrl);document.getElementById('qrModal').style.display='flex';}
+function shareNative(){if(navigator.share)navigator.share({title:brand,url:siteUrl});else copyLink();}
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent('شوف '+brand+' 🏠 '+siteUrl),'_blank');}
+(function init(){document.getElementById('logoDisplay').innerHTML=brand.includes('.')?brand.split('.')[0]+'<span>.'+brand.split('.')[1]+'</span>':brand;document.getElementById('welcomeDisplay').innerText=welcome;document.getElementById('bannerText').innerText=promo.banner;document.getElementById('brandName').value=brand;document.getElementById('welcomeText').value=welcome;document.getElementById('phoneNum').value=contact.phone;document.getElementById('waNum').value=contact.wa;document.getElementById('adTitle').value=promo.title;document.getElementById('adVideo').value=promo.video;document.getElementById('adDesc').value=promo.desc;document.getElementById('adBannerText').value=promo.banner;document.getElementById('commissionRate').value=finance.rate;document.getElementById('minCommission').value=finance.min;renderFeed(properties.filter(p=>p.type!=='رهن'));renderCities(cities);renderFinanceList();
+let p=new URLSearchParams(location.search).get('admin');if(p==='darna2024'){let pass=prompt('كلمة السر:');if(pass==='darna123')document.getElementById('adminPanel').style.display='block';}
+})();
 </script>
 </body>
 </html>
