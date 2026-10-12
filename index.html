@@ -2,50 +2,53 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>دارنا ما - فريجة</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DARNA.MA Officielle - العقار</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="theme-color" content="#FFC107">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:'Tajawal',system-ui;background:#fff8e1}
-.top{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);padding:10px 15px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px #0001}
-.top img{width:48px;height:48px;border-radius:12px;object-fit:contain;background:white;padding:3px}
-.top b{font-size:20px}
-.search{flex:1;background:#f1f1f1;border:1px solid #ddd;border-radius:20px;padding:8px 14px}
-.hero{text-align:center;padding:30px 20px}
-.hero-logo{width:140px;height:140px;background:white;border-radius:24px;padding:10px;box-shadow:0 8px 20px #0002;object-fit:contain}
-.hero h1{margin:15px 0 5px;color:#333;font-size:32px}
-.hero p{color:#666;margin:0}
-.btn{background:#FFC107;color:#000;border:none;padding:14px 35px;border-radius:30px;font-weight:900;font-size:18px;margin-top:18px;box-shadow:0 4px 10px #ffc10788}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:15px}
-.card{background:white;border-radius:16px;padding:10px;box-shadow:0 2px 8px #0001;text-align:center}
-.card img{width:100%;height:90px;object-fit:contain}
-.price{color:#0d6efd;font-weight:900}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+body{background:#0a0a0a;color:#fff;padding-bottom:70px}
+.top{position:sticky;top:0;z-index:999;background:#000;display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid #222}
+.logo{display:flex;align-items:center;gap:6px;font-weight:800;font-size:20px}.logo img{width:34px;height:34px;border-radius:8px}.y{color:#FFC300}
+.search{background:#171717;border-radius:20px;padding:6px 14px;width:130px;display:flex;gap:6px;border:1px solid #222}.search input{background:transparent;border:none;color:#fff;outline:none;font-size:12px;width:100%}
+.icons{display:flex;gap:6px}.ic{width:32px;height:32px;background:#1a1a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+.yellow{background:#FFC300;color:#000;text-align:center;padding:7px;font-weight:800;font-size:13px}
+.cats{display:flex;gap:8px;overflow:auto;padding:10px;scrollbar-width:none}.cat{padding:7px 18px;border-radius:20px;background:#1e1e1e;border:1px solid #333;font-size:13px;white-space:nowrap;cursor:pointer}.cat.active{background:#fff;color:#000}
+.ticker{background:#f1f1f1;color:#000;padding:6px 10px;font-size:12px;font-weight:700;display:flex;justify-content:space-between}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.card{position:relative;height:185px;overflow:hidden;background:#111}.card img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:6px;left:6px;background:rgba(0,0,0,.75);font-size:9px;padding:4px 8px;border-radius:12px}
+.info{position:absolute;bottom:0;width:100%;background:linear-gradient(transparent,rgba(0,0,0,.9));padding:20px 6px 6px}.price{color:#FFC300;font-weight:800;font-size:11px}.ttl{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bottom{position:fixed;bottom:0;width:100%;background:#000;border-top:1px solid #222;display:flex;justify-content:space-around;padding:10px 0;z-index:999}
+.admin{position:fixed;bottom:85px;left:12px;background:#FFC300;color:#000;padding:9px 16px;border-radius:22px;font-weight:800;font-size:12px;border:none;z-index:998}
+.qrbtn{position:fixed;bottom:85px;right:12px;background:#fff;color:#000;padding:9px 14px;border-radius:22px;font-weight:700;font-size:12px;border:none;z-index:998}
 </style>
 </head>
 <body>
-<div class="top">
-<img src="logo.png" alt="logo">
-<b>دارنا ما</b>
-<input class="search" placeholder="شنو كتقلب؟">
-</div>
-
-<div class="hero">
-<img src="logo.png" class="hero-logo" alt="دارنا ما">
-<h1>دارنا ما</h1>
-<p>فريجة - سوق الخميس - أجود المنتوجات</p>
-<button class="btn" onclick="alert('مرحبا! تواصل معنا على واتساب')">تسوق دابا 🛒</button>
-</div>
-
-<div class="products">
-<div class="card"><img src="logo.png"><div>عسل حر</div><div class="price">150 درهم</div></div>
-<div class="card"><img src="logo.png"><div>زيت أركان</div><div class="price">120 درهم</div></div>
-<div class="card"><img src="logo.png"><div>أملو</div><div class="price">80 درهم</div></div>
-<div class="card"><img src="logo.png"><div>كسكس بلدي</div><div class="price">45 درهم</div></div>
-</div>
-
+<div class="top"><div class="icons"><div class="ic">📞</div><div class="ic">💬</div><div class="ic">🌐</div><div class="ic">🗺️</div></div><div class="search">🔍<input id="s" placeholder="بحث: كراء، بيع"></div><div class="logo"><img src="icon.png">DARNA<span class="y">.MA</span></div></div>
+<div class="yellow">🏠 يا أهلا بكم في DARNA.MA Officielle</div>
+<div class="cats"><div class="cat active">الكل</div><div class="cat">كراء</div><div class="cat">بيع</div><div class="cat">فيلات</div><div class="cat">أراضي</div><div class="cat">محلات</div><div class="cat">شقق</div></div>
+<div class="ticker"><span>🏠 عقارات جديدة في جميع مدن المغرب</span><span>▶️</span></div>
+<div class="grid" id="grid"></div>
+<button class="admin" onclick="location.href='admin.html'">⚙️ لوحة التحكم</button>
+<button class="qrbtn" onclick="qrBox.style.display='flex'">📱 QR</button>
+<div id="qrBox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:2000;align-items:center;justify-content:center;flex-direction:column;gap:15px" onclick="this.style.display='none'"><img id="qrImg" style="width:220px;background:#fff;padding:10px;border-radius:12px"><div style="color:#fff;font-weight:700">DARNA.MA</div></div>
+<div class="bottom"><div>🏠<br>الرئيسية</div><div>🔍<br>بحث</div><div onclick="location.href='admin.html'">➕<br>نشر</div><div>💬<br>رسائل</div><div>👤<br>حسابي</div></div>
+<script>
+const DATA=[
+{cat:"أرض",type:"بيع",price:"800,000 DH",title:"أرض 300م² للبيع",city:"الرباط",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400"},
+{cat:"فيلا",type:"بيع",price:"1,250,000 DH",title:"فيلا فاخرة مع مسبح",city:"مراكش",img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400"},
+{cat:"شقة",type:"كراء",price:"3,500 DH",title:"شقة عصرية 2 غرف",city:"الدار البيضاء",img:"https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=400"},
+{cat:"فيلا",type:"كراء",price:"8,000 DH",title:"فيلا كراء يومي",city:"تمارة",img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400"},
+{cat:"شقة",type:"بيع",price:"650,000 DH",title:"شقة مطلة على البحر",city:"أكادير",img:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400"},
+{cat:"محل",type:"كراء",price:"4,000 DH",title:"محل تجاري رئيسي",city:"طنجة",img:"https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400"},
+{cat:"أرض",type:"بيع",price:"350,000 DH",title:"أرض فلاحية 1000م²",city:"برشيد",img:"https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400"},
+{cat:"شقة",type:"كراء",price:"2,800 DH",title:"شقة عائلية",city:"سلا",img:"https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=400"},
+];
+function getData(){let d=JSON.parse(localStorage.getItem('darna_data')||'null');return d&&d.length?d:DATA;}
+function render(){let g=document.getElementById('grid');g.innerHTML="";getData().forEach(x=>{g.innerHTML+=`<div class=card><img src=${x.img} loading=lazy><div class=badge>${x.type} - ${x.cat}</div><div class=info><div class=price>${x.price}</div><div class=ttl>${x.title}</div><div style=font-size:9px>📍 ${x.city}</div></div></div>`})}render();
+document.getElementById('qrImg').src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://abdelmajidraccach-boop.github.io/darna-ma/";
+</script>
 </body>
 </html>
